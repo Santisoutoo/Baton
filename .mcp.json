@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "code-review-graph": {
+      "command": "/home/santiisoutoo/.local/share/pipx/venvs/code-review-graph/bin/python",
+      "args": [
+        "-m",
+        "code_review_graph",
+        "serve"
+      ],
+      "cwd": "/mnt/c/Users/santi/Documents/personal_projects/batuta",
+      "type": "stdio"
+    }
+  }
+}
