@@ -1,0 +1,9 @@
+# Build output
+/bin/
+
+# Local runtime artifacts
+*.log
+usage.db
+
+# OS / editor
+.DS_Store
