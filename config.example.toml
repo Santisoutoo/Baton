@@ -1,0 +1,54 @@
+# batuta example configuration.
+# Copy to ~/.config/batuta/config.toml (global) or .batuta.toml (per project).
+# Everything here matches the built-in defaults except where noted.
+
+port = 8787
+log_level = "info"
+
+# What to do when the execution lane fails or hits a rate limit:
+#   "fallback-claude" — retry the request via your Claude subscription (default)
+#   "error"           — surface the failure to Claude Code
+on_exec_error = "fallback-claude"
+
+# Role for model tiers that aren't listed in [tiers]. "plan" is the safe choice
+# (goes to your Claude subscription).
+default_role = "plan"
+
+# ----- roles: what each lane is -----
+[roles.plan]
+backend = "anthropic"
+# model omitted => keep the model Claude Code sent (subscription passthrough).
+
+[roles.execute]
+backend = "opencode"
+model   = "deepseek-v4-flash"   # <-- set your OpenCode execution model here
+
+# ----- tiers: Claude Code's per-subagent lever (opus|sonnet|haiku) -> role -----
+[tiers]
+opus   = "plan"
+sonnet = "plan"
+haiku  = "execute"
+
+# ----- backends: upstream providers -----
+[backends.anthropic]
+type    = "anthropic"                 # wire format: Anthropic Messages
+base_url = "https://api.anthropic.com"
+auth    = "passthrough"               # forward Claude Code's subscription token
+
+[backends.opencode]
+type       = "openai"                 # "openai" (Zen) or "anthropic" (MiniMax/Qwen on Go)
+base_url   = "https://opencode.ai/zen"
+auth       = "bearer"                 # "bearer" or "x-api-key"
+credential = "opencode"               # keyring service name (batuta login opencode)
+models_url = "https://opencode.ai/zen/v1/models"
+
+# Example of adding another OpenAI-compatible provider — no code needed:
+# [backends.openrouter]
+# type = "openai"
+# base_url = "https://openrouter.ai/api"
+# auth = "bearer"
+# credential = "openrouter"
+
+# ----- prices: USD per 1M tokens, for `batuta usage` cost estimates -----
+[prices]
+# "deepseek-v4-flash" = { in = 0.0, out = 0.0 }
