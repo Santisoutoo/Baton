@@ -8,13 +8,13 @@ import (
 	"os/exec"
 	"time"
 
-	"batuta/internal/config"
-	"batuta/internal/creds"
-	"batuta/internal/logx"
-	"batuta/internal/meter"
-	"batuta/internal/proxy"
-	"batuta/internal/registry"
-	"batuta/internal/router"
+	"baton/internal/config"
+	"baton/internal/creds"
+	"baton/internal/logx"
+	"baton/internal/meter"
+	"baton/internal/proxy"
+	"baton/internal/registry"
+	"baton/internal/router"
 
 	"github.com/spf13/cobra"
 )

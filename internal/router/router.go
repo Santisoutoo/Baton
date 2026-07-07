@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"strings"
 
-	"batuta/internal/config"
-	"batuta/internal/core"
+	"baton/internal/config"
+	"baton/internal/core"
 )
 
 // Router implements core.Router from a Config.

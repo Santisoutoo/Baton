@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"batuta/internal/config"
+	"baton/internal/config"
 
 	"github.com/BurntSushi/toml"
 	"github.com/spf13/cobra"
@@ -13,7 +13,7 @@ import (
 func newConfigCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "config",
-		Short: "Inspect batuta configuration",
+		Short: "Inspect baton configuration",
 	}
 	cmd.AddCommand(
 		&cobra.Command{
@@ -24,7 +24,7 @@ func newConfigCmd() *cobra.Command {
 				if pp := config.ProjectPath(); pp != "" {
 					fmt.Printf("project: %s\n", pp)
 				} else {
-					fmt.Println("project: (none — no .batuta.toml found)")
+					fmt.Println("project: (none — no .baton.toml found)")
 				}
 				return nil
 			},

@@ -1,5 +1,5 @@
 // Package core defines the stable contracts (interfaces + shared types) that the
-// rest of batuta is built on. Everything else depends on this package; this
+// rest of baton is built on. Everything else depends on this package; this
 // package depends on nothing but the standard library. Adding a new provider or
 // swapping an implementation means satisfying one of these interfaces — the core
 // never learns concrete provider names.

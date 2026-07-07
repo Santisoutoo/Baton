@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"batuta/internal/creds"
+	"baton/internal/creds"
 
 	"github.com/spf13/cobra"
 )

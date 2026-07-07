@@ -7,11 +7,11 @@ import (
 	"sync"
 	"testing"
 
-	"batuta/internal/config"
-	"batuta/internal/core"
-	"batuta/internal/logx"
-	"batuta/internal/registry"
-	"batuta/internal/router"
+	"baton/internal/config"
+	"baton/internal/core"
+	"baton/internal/logx"
+	"baton/internal/registry"
+	"baton/internal/router"
 )
 
 type fakeCreds struct{}

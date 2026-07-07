@@ -1,15 +1,15 @@
-# Batuta
+# Baton
 
 **Claude Code orchestrates, OpenCode executes.**
 
-`batuta` is a small local proxy that sits between Claude Code and the model APIs.
+`Baton` is a small local proxy that sits between Claude Code and the model APIs.
 The main model (opus/sonnet) keeps planning/orchestrating through **your Claude
 subscription**, while execution-tier work (the `haiku` tier / your implementation
 subagents) is routed to cheaper **OpenCode** models. Claude Code doesn't change —
-you point one environment variable at batuta and keep working as usual.
+you point one environment variable at Baton and keep working as usual.
 
 ```
-Claude Code ──(Anthropic /v1/messages)──▶ batuta ──┬─ plan  → api.anthropic.com (your subscription, passthrough)
+Claude Code ──(Anthropic /v1/messages)──▶ Baton ──┬─ plan  → api.anthropic.com (your subscription, passthrough)
              ANTHROPIC_BASE_URL=127.0.0.1:8787      └─ exec  → opencode.ai (translated to OpenAI wire if needed)
 ```
 
@@ -17,7 +17,7 @@ Claude Code ──(Anthropic /v1/messages)──▶ batuta ──┬─ plan  �
 
 Claude Code only speaks the Anthropic Messages protocol and only lets you change
 its backend via `ANTHROPIC_BASE_URL`. OpenCode models are mostly OpenAI-compatible
-(some Anthropic-native). batuta is the translator in the middle: it routes by
+(some Anthropic-native). Baton is the translator in the middle: it routes by
 model tier, forwards the Claude lane untouched (so your subscription auth is
 reused verbatim), and translates the OpenCode lane both ways — including
 incremental SSE streaming and tool calls.
@@ -27,43 +27,43 @@ incremental SSE streaming and tool calls.
 Requires [Go](https://go.dev/dl/) 1.24+.
 
 ```bash
-go build -o bin/batuta ./cmd/batuta      # or: go install ./cmd/batuta
+go build -o bin/Baton ./cmd/Baton      # or: go install ./cmd/Baton
 ```
 
 ## Quickstart
 
 ```bash
-batuta init                 # store your OpenCode key + pick the execution model
-batuta claude               # launches Claude Code through the proxy for you
+Baton init                 # store your OpenCode key + pick the execution model
+Baton claude               # launches Claude Code through the proxy for you
 ```
 
 …or wire it up manually:
 
 ```bash
-batuta login opencode                          # store the OpenCode API key (OS keyring)
-batuta models --exec deepseek-v4-flash         # choose the execution model
-batuta serve                                   # start the proxy on 127.0.0.1:8787
+Baton login opencode                          # store the OpenCode API key (OS keyring)
+Baton models --exec deepseek-v4-flash         # choose the execution model
+Baton serve                                   # start the proxy on 127.0.0.1:8787
 export ANTHROPIC_BASE_URL=http://127.0.0.1:8787
 export ENABLE_TOOL_SEARCH=true                 # if you use MCP tool search
 claude                                         # Claude Code, unchanged
 ```
 
 To send execution work to OpenCode, mark your implementation subagents with
-`model: haiku` in their `.claude/agents/*.md` frontmatter — batuta routes the
+`model: haiku` in their `.claude/agents/*.md` frontmatter — Baton routes the
 `haiku` tier to the execute lane.
 
 ## Commands
 
 | Command | What it does |
 |---|---|
-| `batuta init` | First-run wizard: OpenCode login + execution model + prints the env. |
-| `batuta claude [args…]` | Starts the proxy, sets the env, and launches `claude` for you. |
-| `batuta serve [--port] [--echo] [--log-level]` | Runs the proxy (loopback only). `--echo` = validation mode. |
-| `batuta login <svc>` / `logout <svc>` | Store / remove a provider key in the OS keyring. |
-| `batuta models [--plan] [--exec]` | List models, or set the plan/exec model. |
-| `batuta usage [--since] [--by]` | Local token/cost report (model\|backend\|day). |
-| `batuta status` | Config paths, routing, and which credentials are set. |
-| `batuta config path\|show\|init` | Inspect or scaffold configuration. |
+| `Baton init` | First-run wizard: OpenCode login + execution model + prints the env. |
+| `Baton claude [args…]` | Starts the proxy, sets the env, and launches `claude` for you. |
+| `Baton serve [--port] [--echo] [--log-level]` | Runs the proxy (loopback only). `--echo` = validation mode. |
+| `Baton login <svc>` / `logout <svc>` | Store / remove a provider key in the OS keyring. |
+| `Baton models [--plan] [--exec]` | List models, or set the plan/exec model. |
+| `Baton usage [--since] [--by]` | Local token/cost report (model\|backend\|day). |
+| `Baton status` | Config paths, routing, and which credentials are set. |
+| `Baton config path\|show\|init` | Inspect or scaffold configuration. |
 
 ## Validation step 0 (do this first)
 
@@ -71,7 +71,7 @@ The one hard assumption is that Claude Code forwards your subscription token to 
 custom `ANTHROPIC_BASE_URL`. Confirm it before relying on the Claude lane:
 
 ```bash
-batuta serve --echo --port 8799
+Baton serve --echo --port 8799
 # in another shell:
 ANTHROPIC_BASE_URL=http://127.0.0.1:8799 claude
 ```
@@ -81,8 +81,8 @@ being forwarded and passthrough will work. (Secrets are redacted in logs.)
 
 ## Configuration
 
-Two layers, merged key-by-key: global `~/.config/batuta/config.toml`, then a
-per-project `.batuta.toml` found by walking up from the working directory. See
+Two layers, merged key-by-key: global `~/.config/Baton/config.toml`, then a
+per-project `.Baton.toml` found by walking up from the working directory. See
 [`config.example.toml`](config.example.toml).
 
 ```toml
@@ -111,7 +111,7 @@ Adding a new provider (OpenRouter, Groq, a local model, …) is a new
 ## Latency
 
 The proxy adds single-digit milliseconds; perceived latency is dominated by which
-model you route to, not by batuta. The Claude lane is a straight reverse-proxy;
+model you route to, not by Baton. The Claude lane is a straight reverse-proxy;
 the OpenCode lane translates incrementally and **never buffers the stream**, so
 time-to-first-token is preserved.
 

@@ -6,9 +6,9 @@ import (
 	"text/tabwriter"
 	"time"
 
-	"batuta/internal/config"
-	"batuta/internal/core"
-	"batuta/internal/meter"
+	"baton/internal/config"
+	"baton/internal/core"
+	"baton/internal/meter"
 
 	"github.com/spf13/cobra"
 )

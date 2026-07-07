@@ -1,4 +1,4 @@
-// Package cli wires batuta's command-line surface (cobra). Each command loads the
+// Package cli wires baton's command-line surface (cobra). Each command loads the
 // layered config and the credential store as needed; the commands stay thin and
 // defer real work to the internal packages.
 package cli
@@ -20,11 +20,11 @@ func Execute() error {
 
 func newRoot() *cobra.Command {
 	root := &cobra.Command{
-		Use:   "batuta",
-		Short: "batuta — Claude Code orchestrates, OpenCode executes",
-		Long: "batuta is a local proxy that lets Claude Code plan/orchestrate with your\n" +
+		Use:   "baton",
+		Short: "baton — Claude Code orchestrates, OpenCode executes",
+		Long: "baton is a local proxy that lets Claude Code plan/orchestrate with your\n" +
 			"Claude subscription while cheaper OpenCode models do the execution.\n" +
-			"Point ANTHROPIC_BASE_URL at `batuta serve` and keep using Claude Code as-is.",
+			"Point ANTHROPIC_BASE_URL at `baton serve` and keep using Claude Code as-is.",
 		SilenceUsage: true,
 	}
 	root.AddCommand(

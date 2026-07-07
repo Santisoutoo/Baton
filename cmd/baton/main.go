@@ -1,4 +1,4 @@
-// Command batuta is a local proxy + CLI that lets Claude Code orchestrate with
+// Command baton is a local proxy + CLI that lets Claude Code orchestrate with
 // your Claude subscription while OpenCode models handle execution.
 package main
 
@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"os"
 
-	"batuta/internal/cli"
+	"baton/internal/cli"
 )
 
 func main() {

@@ -11,7 +11,7 @@ import (
 
 // ---------- Anthropic Messages wire ----------
 
-// AnthropicRequest is the subset of the /v1/messages request body batuta reads
+// AnthropicRequest is the subset of the /v1/messages request body baton reads
 // or rewrites. Fields we don't understand are preserved when we round-trip via
 // a generic map (see rewrite helpers); the struct is used by the OpenAI
 // translator which rebuilds the body from scratch.
@@ -123,7 +123,7 @@ func PeekModel(body []byte) (model string, stream bool) {
 }
 
 // RewriteModel returns body with its top-level "model" set to newModel,
-// preserving every other field (including ones batuta doesn't model).
+// preserving every other field (including ones baton doesn't model).
 func RewriteModel(body []byte, newModel string) ([]byte, error) {
 	var m map[string]json.RawMessage
 	if err := json.Unmarshal(body, &m); err != nil {

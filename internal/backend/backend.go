@@ -1,13 +1,13 @@
 // Package backend holds the concrete core.Backend implementations. A backend is
 // just an upstream base URL plus an auth scheme; it is deliberately ignorant of
 // wire formats (that is the translator's job). Two schemes cover every provider
-// batuta targets today, and new providers are added by config, not code.
+// baton targets today, and new providers are added by config, not code.
 package backend
 
 import "net/http"
 
 // Passthrough forwards the client's inbound Authorization header untouched. This
-// is what lets the Claude lane reuse your Claude Code subscription: batuta never
+// is what lets the Claude lane reuse your Claude Code subscription: baton never
 // sees or stores an Anthropic key, it just relays the token Claude Code sent.
 type Passthrough struct {
 	name    string
