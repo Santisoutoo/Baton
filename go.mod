@@ -1,4 +1,4 @@
-module batuta
+module baton
 
 go 1.26.4
 

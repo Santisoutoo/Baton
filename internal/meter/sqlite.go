@@ -1,4 +1,4 @@
-// Package meter records per-request token usage locally so `batuta usage` can
+// Package meter records per-request token usage locally so `baton usage` can
 // report spend without depending on any provider's usage API. Backed by a pure-Go
 // SQLite (no cgo) that lives next to the config file.
 package meter
@@ -10,7 +10,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"batuta/internal/core"
+	"baton/internal/core"
 
 	_ "modernc.org/sqlite"
 )

@@ -3,7 +3,7 @@ package router
 import (
 	"testing"
 
-	"batuta/internal/config"
+	"baton/internal/config"
 )
 
 func TestRoute(t *testing.T) {

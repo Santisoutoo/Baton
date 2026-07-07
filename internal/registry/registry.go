@@ -5,10 +5,10 @@
 package registry
 
 import (
-	"batuta/internal/backend"
-	"batuta/internal/config"
-	"batuta/internal/core"
-	"batuta/internal/translate"
+	"baton/internal/backend"
+	"baton/internal/config"
+	"baton/internal/core"
+	"baton/internal/translate"
 )
 
 // Registry implements core.Registry.

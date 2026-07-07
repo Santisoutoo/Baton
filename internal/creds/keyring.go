@@ -14,7 +14,7 @@ import (
 
 // keyringService is the fixed namespace under the OS keyring. Changing it would
 // orphan every key already saved, so it stays constant.
-const keyringService = "batuta"
+const keyringService = "baton"
 
 // Keyring is the default CredentialStore.
 type Keyring struct{}

@@ -3,8 +3,8 @@ package cli
 import (
 	"fmt"
 
-	"batuta/internal/config"
-	"batuta/internal/creds"
+	"baton/internal/config"
+	"baton/internal/creds"
 
 	"github.com/spf13/cobra"
 )
@@ -54,9 +54,9 @@ func newInitCmd() *cobra.Command {
 			// 3) Print how to run.
 			addr := fmt.Sprintf("127.0.0.1:%d", cfg.Port)
 			fmt.Println("\nAll set. To use it:")
-			fmt.Printf("  batuta claude          # launches Claude Code through the proxy\n")
+			fmt.Printf("  baton claude          # launches Claude Code through the proxy\n")
 			fmt.Println("or manually:")
-			fmt.Printf("  batuta serve\n")
+			fmt.Printf("  baton serve\n")
 			fmt.Printf("  export ANTHROPIC_BASE_URL=http://%s\n", addr)
 			return nil
 		},

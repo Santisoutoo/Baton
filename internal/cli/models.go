@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"time"
 
-	"batuta/internal/config"
-	"batuta/internal/creds"
+	"baton/internal/config"
+	"baton/internal/creds"
 
 	"github.com/spf13/cobra"
 )
@@ -74,7 +74,7 @@ func listModels(cfg *config.Config) error {
 	ids, err := fetchModelIDs(oc.ModelsURL)
 	if err != nil {
 		fmt.Printf("  could not fetch catalog: %v\n", err)
-		fmt.Println("  (login first: batuta login opencode)")
+		fmt.Println("  (login first: baton login opencode)")
 		return nil
 	}
 	for _, id := range ids {

@@ -7,7 +7,7 @@ import (
 	"io"
 	"net/http"
 
-	"batuta/internal/core"
+	"baton/internal/core"
 )
 
 // Passthrough is the identity wire adapter: Anthropic in, Anthropic out. It is

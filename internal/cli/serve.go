@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"net/http"
 
-	"batuta/internal/config"
-	"batuta/internal/creds"
-	"batuta/internal/logx"
-	"batuta/internal/meter"
-	"batuta/internal/proxy"
-	"batuta/internal/registry"
-	"batuta/internal/router"
+	"baton/internal/config"
+	"baton/internal/creds"
+	"baton/internal/logx"
+	"baton/internal/meter"
+	"baton/internal/proxy"
+	"baton/internal/registry"
+	"baton/internal/router"
 
 	"github.com/spf13/cobra"
 )
@@ -56,7 +56,7 @@ func newServeCmd() *cobra.Command {
 
 			// Security: bind to loopback only — never reachable from the network.
 			addr := fmt.Sprintf("127.0.0.1:%d", port)
-			fmt.Printf("batuta proxy listening on http://%s\n", addr)
+			fmt.Printf("baton proxy listening on http://%s\n", addr)
 			fmt.Printf("\n  export ANTHROPIC_BASE_URL=http://%s\n", addr)
 			fmt.Printf("  export ENABLE_TOOL_SEARCH=true   # if you use MCP tool search\n\n")
 

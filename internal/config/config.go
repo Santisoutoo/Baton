@@ -1,5 +1,5 @@
-// Package config loads batuta's layered configuration: built-in defaults, then a
-// global file (~/.config/batuta/config.toml), then a per-project .batuta.toml
+// Package config loads baton's layered configuration: built-in defaults, then a
+// global file (~/.config/baton/config.toml), then a per-project .baton.toml
 // found by walking up from the working directory. Later layers override earlier
 // ones key-by-key, so a project can retune just its execute model.
 package config
@@ -37,7 +37,7 @@ type BackendConfig struct {
 	BaseURL    string `toml:"base_url"`   // prefix before /v1/...
 	Auth       string `toml:"auth"`       // "passthrough" | "bearer" | "x-api-key"
 	Credential string `toml:"credential"` // keyring service name (for key auth)
-	ModelsURL  string `toml:"models_url"` // optional: catalog for `batuta models`
+	ModelsURL  string `toml:"models_url"` // optional: catalog for `baton models`
 }
 
 // Price is a per-model cost, USD per 1M tokens, for usage estimates.
@@ -110,26 +110,26 @@ func mergeFile(cfg *Config, path string) error {
 	return err
 }
 
-// GlobalPath is ~/.config/batuta/config.toml (honoring XDG_CONFIG_HOME).
+// GlobalPath is ~/.config/baton/config.toml (honoring XDG_CONFIG_HOME).
 func GlobalPath() string {
 	if x := os.Getenv("XDG_CONFIG_HOME"); x != "" {
-		return filepath.Join(x, "batuta", "config.toml")
+		return filepath.Join(x, "baton", "config.toml")
 	}
 	home, err := os.UserHomeDir()
 	if err != nil {
 		return ""
 	}
-	return filepath.Join(home, ".config", "batuta", "config.toml")
+	return filepath.Join(home, ".config", "baton", "config.toml")
 }
 
-// ProjectPath walks up from the working directory looking for .batuta.toml.
+// ProjectPath walks up from the working directory looking for .baton.toml.
 func ProjectPath() string {
 	dir, err := os.Getwd()
 	if err != nil {
 		return ""
 	}
 	for {
-		candidate := filepath.Join(dir, ".batuta.toml")
+		candidate := filepath.Join(dir, ".baton.toml")
 		if _, err := os.Stat(candidate); err == nil {
 			return candidate
 		}

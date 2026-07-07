@@ -1,5 +1,5 @@
-# batuta example configuration.
-# Copy to ~/.config/batuta/config.toml (global) or .batuta.toml (per project).
+# baton example configuration.
+# Copy to ~/.config/baton/config.toml (global) or .baton.toml (per project).
 # Everything here matches the built-in defaults except where noted.
 
 port = 8787
@@ -39,7 +39,7 @@ auth    = "passthrough"               # forward Claude Code's subscription token
 type       = "openai"                 # "openai" (Zen) or "anthropic" (MiniMax/Qwen on Go)
 base_url   = "https://opencode.ai/zen"
 auth       = "bearer"                 # "bearer" or "x-api-key"
-credential = "opencode"               # keyring service name (batuta login opencode)
+credential = "opencode"               # keyring service name (baton login opencode)
 models_url = "https://opencode.ai/zen/v1/models"
 
 # Example of adding another OpenAI-compatible provider — no code needed:
@@ -49,6 +49,6 @@ models_url = "https://opencode.ai/zen/v1/models"
 # auth = "bearer"
 # credential = "openrouter"
 
-# ----- prices: USD per 1M tokens, for `batuta usage` cost estimates -----
+# ----- prices: USD per 1M tokens, for `baton usage` cost estimates -----
 [prices]
 # "deepseek-v4-flash" = { in = 0.0, out = 0.0 }

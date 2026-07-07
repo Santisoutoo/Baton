@@ -13,9 +13,9 @@ import (
 	"net/http"
 	"time"
 
-	"batuta/internal/config"
-	"batuta/internal/core"
-	"batuta/internal/translate"
+	"baton/internal/config"
+	"baton/internal/core"
+	"baton/internal/translate"
 )
 
 // Handler implements http.Handler.
@@ -193,7 +193,7 @@ func (h *Handler) writeCountTokens(w http.ResponseWriter, body []byte) {
 }
 
 func (h *Handler) writeError(w http.ResponseWriter, status int, msg string) {
-	env := map[string]any{"type": "error", "error": map[string]any{"type": "batuta_error", "message": msg}}
+	env := map[string]any{"type": "error", "error": map[string]any{"type": "baton_error", "message": msg}}
 	out, _ := json.Marshal(env)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)

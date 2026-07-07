@@ -1,4 +1,4 @@
-// Package logx is batuta's tiny logging facade over log/slog. Its whole reason
+// Package logx is baton's tiny logging facade over log/slog. Its whole reason
 // to exist is a single rule: secrets never reach the logs. Auth headers and API
 // keys are redacted at the source, so no call site can accidentally leak one.
 package logx

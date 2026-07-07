@@ -3,8 +3,8 @@ package cli
 import (
 	"fmt"
 
-	"batuta/internal/config"
-	"batuta/internal/creds"
+	"baton/internal/config"
+	"baton/internal/creds"
 
 	"github.com/spf13/cobra"
 )
@@ -49,7 +49,7 @@ func newStatusCmd() *cobra.Command {
 					if v, _ := store.Get(bc.Credential); v != "" {
 						credState = "key set"
 					} else {
-						credState = "MISSING — run: batuta login " + bc.Credential
+						credState = "MISSING — run: baton login " + bc.Credential
 					}
 				}
 				fmt.Printf("  %-10s type=%-9s url=%-28s auth=%-11s %s\n",
