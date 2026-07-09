@@ -9,6 +9,11 @@ import (
 	"os"
 	"strings"
 
+	"baton/internal/config"
+	"baton/internal/creds"
+	"baton/internal/meter"
+	"baton/internal/tui"
+
 	"github.com/spf13/cobra"
 	"golang.org/x/term"
 )
@@ -26,6 +31,24 @@ func newRoot() *cobra.Command {
 			"Claude subscription while cheaper OpenCode models do the execution.\n" +
 			"Point ANTHROPIC_BASE_URL at `baton serve` and keep using Claude Code as-is.",
 		SilenceUsage: true,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			if len(args) > 0 {
+				return nil
+			}
+			cfg, err := config.Load()
+			if err != nil {
+				return err
+			}
+			store := creds.New()
+			m, err := meter.Open(config.UsageDBPath())
+			if err != nil {
+				m = nil
+			}
+			if m != nil {
+				defer m.Close()
+			}
+			return tui.Run(cfg, store, m)
+		},
 	}
 	root.AddCommand(
 		newServeCmd(),
